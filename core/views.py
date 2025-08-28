@@ -6,10 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
 
-# Create your views here.
-# class RegisterView(generics.CreateAPIView):
-#     queryset = CustomUser.objects.all()
-#     serializer_class = RegisterSerializer
+
 
 class RoleManagementView(APIView):
     permission_classes = [IsAuthenticated]
@@ -157,7 +154,6 @@ class TaskStatusUpdateView(APIView):
         
         user = request.user
 
-        # ✅ Employees can only update their own task's status
         if user.role.name.lower() == "employee":
             if task.assigned_to != user:
                 return Response({"detail":"You can only update your own tasks"},status=400)
