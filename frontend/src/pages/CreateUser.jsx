@@ -8,20 +8,17 @@ function CreateUser() {
   const location = useLocation();
   const passedRole = location.state?.role;
 
+  if (passedRole === "Employee") {
+    return <h1>Employees cannot create users.</h1>;
+  }
+
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const creatingUserRole = passedRole === "Admin" ? "Project Coordinator" : "Employee";
+  const creatingUserRole =
+    passedRole === "Admin" ? "Project Coordinator" : "Employee";
   const [loading, setLoading] = useState(false);
 
   const url = passedRole === "Admin" ? "/users/" : "/employees/";
-
-  if (passedRole === "Employee") {
-    return (
-      <div>
-        <h1>Employees cannot create users.</h1>
-      </div>
-    );
-  }
 
   const handleSubmit = async (e) => {
     setLoading(true);

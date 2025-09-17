@@ -22,7 +22,8 @@ function Home() {
         <div>
           Logged in as <b>{role}</b>
         </div>
-        <Link to="/changepassword" className="my-profile-button">
+        <div className="username">{username}</div>
+        <Link to="/changepassword" className="change-password">
           Change Password
         </Link>
         <Link to="/logout" className="logout-button">

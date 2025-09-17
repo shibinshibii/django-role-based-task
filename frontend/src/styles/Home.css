@@ -7,10 +7,16 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     height: 50px;
     border: none;
+
+
     
 }
-.my-profile-button{
-    margin-left: 75%;
+.username{
+  margin-left: 50%;  
+  font-weight: bold;
+}
+.change-password{
+    margin-left: 75px;
     /* font-size: 18px; */
     cursor: pointer;
     text-decoration: none;

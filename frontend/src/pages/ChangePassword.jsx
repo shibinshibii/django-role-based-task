@@ -71,7 +71,7 @@ function ChangePassword() {
           placeholder="Confirm new password"
         />
         <button type="submit" className="form-button" disabled={loading}>
-          {loading ? "Wait..." : "Change"}
+          {loading ? "Changing..." : "Change"}
         </button>
       </form>
       <ToastContainer

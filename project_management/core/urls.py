@@ -10,8 +10,8 @@ urlpatterns = [
     path('tasks/', TaskManagementView.as_view()),
     path('tasks/<int:pk>/', TaskStatusUpdateView.as_view()),
     path('user/', CurrentUserView.as_view()),
-    path('change-password/', ChangePasswordView.as_view()),
-    path('forgot-password/', ForgotPasswordView.as_view()),
-    path('reset-password/', ResetPasswordView.as_view()),
+    path('change-password/', ChangePasswordView.as_view(),name="change-password"),
+    path('forgot-password/', ForgotPasswordView.as_view(),name="forgot-password"),
+    path('reset-password/', ResetPasswordView.as_view(),name="reset-password"),
 
 ]
