@@ -22,6 +22,8 @@
     "password":"admin_password"}</pre>
 - Add this inside the body section(change the values).
 - RUN , Admin will be created.
+
+
 **Setting up the email-provider**
 
 - create a .env file
