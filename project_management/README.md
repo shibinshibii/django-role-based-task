@@ -1,9 +1,24 @@
+**The backend made using Django Rest Framework**
+
 **Set-up**
 
-- pip install -r requirements.txt
-- python manage.py makemigrations
+- python -m venv venv - create a virtual environment
+- venv\Scripts\activate - activate the environment
+- pip install -r requirements.txt - install the requirements after activating the environment variable
+- python manage.py makemigrations - make migrations
 - python manage.py migrate
-- python manage.py runserver
+- python manage.py runserver - run the server
+
+**Setting up the email-provider**
+
+- create a .env file and add these values 
+    EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+    EMAIL_HOST = "smtp.gmail.com"          
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
+    EMAIL_HOST_USER = "" 
+    EMAIL_HOST_PASSWORD = ""  
+    DEFAULT_FROM_EMAIL = ""
 
 **Test using Postman or any other provider**
 
