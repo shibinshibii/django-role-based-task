@@ -18,11 +18,11 @@
 - You need an admin to create coordinators and employees (note that you need to create the roles before creating admin).
 - Go to /create-admin/ endpoint using Postman.
 - <pre>{"username":"admin_username",
-        "email":"admin_email",
-        "password":"admin_password"}</pre>
+    "email":"admin_email",
+    "password":"admin_password"}</pre>
 - Add this inside the body section(change the values).
 - RUN , Admin will be created.
-- **Setting up the email-provider**
+**Setting up the email-provider**
 
 - create a .env file
 - add values refering to .env.sample file.
