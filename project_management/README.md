@@ -11,44 +11,45 @@
 
 **Setting up the email-provider**
 
-- create a .env file and add these values 
-    EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-    EMAIL_HOST = "smtp.gmail.com"          
-    EMAIL_PORT = 587
-    EMAIL_USE_TLS = True
-    EMAIL_HOST_USER = "" 
-    EMAIL_HOST_PASSWORD = ""  
-    DEFAULT_FROM_EMAIL = ""
+- create a .env file
+- add values refering to .env.sample file.
+
+
 
 **Test using Postman or any other provider**
 
-*Authentication:*
+_Authentication:_
+
 - POST /api/token/ → Get JWT tokens
 - POST /api/token/refresh/ → Refresh token
 
-*Role Management:*
+_Role Management:_
+
 - POST /roles/ → Admin creates a new role
 - GET /roles/ → View all roles
 
-*User Management:*
+_User Management:_
+
 - GET /user/ → Gets the current logged in user
 - POST /users/ → Admin creates Coordinators
 - POST /employees/ → Coordinator creates Employees
 - GET /users/ → Admin views all users
 
-*Project Management:*
+_Project Management:_
+
 - POST /projects/ → Coordinator creates Project
 - GET /projects/ → Coordinator views their Projects
 
-*Task Management:*
+_Task Management:_
+
 - POST /tasks/ → Coordinator assigns Task to Employee
 - GET /tasks/ → Employees view their Tasks
 - PATCH /tasks/{id}/ → Employee updates Task status
 
-*Password Reset Management*
+_Password Reset Management_
+
 - POST /change-password/ → Change password using old password
 - POST /forgot-password/ → Reset password using email. Sends uid and token to the /reset-password/ endpoint.
 - POST /reset-password/ → Accept token and uid and new password and changes it.
 
 --you can test using postman or any other service providers.
-
