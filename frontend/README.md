@@ -2,9 +2,9 @@
 
 *Steps to setup the frontend*
 
-- cd frontend
-- npm install
-- npm run dev
+- if you havent moved to the directory `cd frontend` 
+- `npm install`
+- `npm run dev`
 
 *Connecting backend*
 

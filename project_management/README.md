@@ -1,24 +1,25 @@
-**The backend made using Django Rest Framework**
+## The backend is made using Django Rest Framework
 
 **Set-up**
 
-- `python -m venv venv` - create a virtual environment
-- venv\Scripts\activate - activate the environment
-- pip install -r requirements.txt - install the requirements after activating the environment variable
-- python manage.py makemigrations - make migrations
-- python manage.py migrate
-- python manage.py runserver
+- create a virtual environment  `python -m venv venv` 
+- activate the environment  `venv\Scripts\activate`  
+- install the requirements  `pip install -r requirements.txt`  
+- make migrations `python manage.py makemigrations` then `python manage.py migrate`
+- run the server `python manage.py runserver`
 
 **Creating Roles**
 
 - run `python manage.py createroles` to create roles. 
-- if you want to add or change the roles go to core/management/commands/createroles.py
+- if you want to add or change the roles go to *core/management/commands/createroles.py*
 
 **Creating the Admin**
 
-- You need an admin to create coordinators and employees(Note that you need to create the roles before creating admin).
+- You need an admin to create coordinators and employees (note that you need to create the roles before creating admin).
 - Go to /create-admin/ endpoint using Postman.
-- ```json {"username":"admin_username","email":"admin_email","password":"admin_password"}```
+- <pre>{"username":"admin_username",
+"email":"admin_email",
+"password":"admin_password"}</pre>
 - Add this inside the body section(change the values).
 - RUN , Admin will be created.
 -
