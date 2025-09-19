@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import CustomUser, Project, Role, Task
-from .serializers import RoleSerializer, ProjectSerializer, TaskSerializer, UserSerializer, CurrentUserSerializer
+from .serializers import RoleSerializer, ProjectSerializer, TaskSerializer, UserSerializer, CurrentUserSerializer,AdminCreateSerializer
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -12,7 +12,13 @@ from django.core.mail import send_mail
 from django.conf import settings
 from rest_framework.throttling import AnonRateThrottle
 
-
+class AdminCreateView(APIView):
+    def post(self,request):
+        serializer = AdminCreateSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data,status=201)
+        return Response(serializer.errors)
 class RoleManagementView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -83,8 +89,9 @@ class EmployeeCreateView(APIView):
             return Response({"detail": "Username already in use"}, status=status.HTTP_400_BAD_REQUEST)
         if CustomUser.objects.filter(email=email).exists():
             return Response({"detail": "E-mail already in use"}, status=status.HTTP_400_BAD_REQUEST)
-        if not user.role or user.role.name.lower() != "project coordinator":
-            return Response({"detail": "Only Project Coordinators can create Employees"}, status=status.HTTP_403_FORBIDDEN)
+        allowed_roles = ["project coordinator", "admin"]
+        if not user.role or user.role.name.lower() not in allowed_roles:
+            return Response({"detail": "You don't have permission to create employees"}, status=status.HTTP_403_FORBIDDEN)
         role_name = request.data.get("creatingUserRole")
         if not role_name or role_name.lower() != "employee":
             return Response({"detail": "The role must be Employee"}, status=status.HTTP_400_BAD_REQUEST)
@@ -107,9 +114,11 @@ class ProjectManagmentView(APIView):
 
     def post(self, request):
         user = request.user
+        
 
-        if not user.role or user.role.name.lower() != 'project coordinator':
-            return Response({"detail": "Only Project Coordinators can create Projects.."}, status=status.HTTP_403_FORBIDDEN)
+        allowed_roles = ["project coordinator", "admin"]
+        if not user.role or user.role.name.lower() not in allowed_roles:
+            return Response({"detail": "You dont have permission to create projects"}, status=status.HTTP_403_FORBIDDEN)
         serializer = ProjectSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save(created_by=user)
@@ -127,8 +136,9 @@ class TaskManagementView(APIView):
 
     def post(self, request):
         user = request.user
-        if not user.role or user.role.name.lower() != "project coordinator":
-            return Response({"detail": "Only Project Coordinators can assign tasks"},
+        allowed_roles = ["project coordinator", "admin"]
+        if not user.role or user.role.name.lower() not in allowed_roles:
+            return Response({"detail": "You don't have permission to assign tasks"},
                             status=status.HTTP_403_FORBIDDEN)
 
         assigned_to_id = request.data.get('assigned_to')
@@ -159,7 +169,7 @@ class TaskManagementView(APIView):
         user = request.user
 
         if not user.role or user.role.name.lower() != "employee":
-            return Response({"detail": "Only employees can view their tasks"},
+            return Response({"detail": "Only employees have tasks"},
                             status=status.HTTP_403_FORBIDDEN)
         tasks = Task.objects.filter(assigned_to=user)
         serializer = TaskSerializer(tasks, many=True)

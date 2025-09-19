@@ -1,8 +1,9 @@
 from django.urls import path
-from .views import RoleManagementView, UserManagementView, EmployeeCreateView, ProjectManagmentView, TaskManagementView, TaskStatusUpdateView, CurrentUserView, ChangePasswordView, ForgotPasswordView, ResetPasswordView
+from .views import RoleManagementView, UserManagementView, EmployeeCreateView, ProjectManagmentView, TaskManagementView, TaskStatusUpdateView, CurrentUserView, ChangePasswordView, ForgotPasswordView, ResetPasswordView,AdminCreateView
 
 
 urlpatterns = [
+    path("create-admin/",AdminCreateView.as_view()),
     path("roles/", RoleManagementView.as_view()),
     path('users/', UserManagementView.as_view()),
     path('employees/', EmployeeCreateView.as_view()),

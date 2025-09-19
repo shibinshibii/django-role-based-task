@@ -14,11 +14,10 @@ function CreateUser() {
 
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const creatingUserRole =
-    passedRole === "Admin" ? "Project Coordinator" : "Employee";
+  const [creatingUserRole,setCreatingUserRole] = useState("Project Coordinator");
   const [loading, setLoading] = useState(false);
 
-  const url = passedRole === "Admin" ? "/users/" : "/employees/";
+  const url = creatingUserRole === "Project Coordinator" ? "/users/" : "/employees/";
 
   const handleSubmit = async (e) => {
     setLoading(true);
@@ -65,22 +64,22 @@ function CreateUser() {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
         />
-        <input
+        {/* <input
           className="form-input"
           type="text"
           value={creatingUserRole}
           placeholder="Role"
           disabled={true}
-        />
-        {/* <label htmlFor="difficulty">Select Role</label>
+        /> */}
+        <label htmlFor="difficulty">Select Role</label>
         <select
           id="role"
-          value={role}
-          onChange={(e) => setRole(e.target.value)}
+          value={creatingUserRole}
+          onChange={(e) => setCreatingUserRole(e.target.value)}
         >
-          <option value="project coordinator">Project Coordinator</option>
-          <option value="employee">Employee</option>
-        </select> */}
+          <option value="Project Coordinator">Project Coordinator</option>
+          <option value="Employee">Employee</option>
+        </select>
         <button type="submit" className="form-button" disabled={loading}>
           {loading ? "Creating..." : "Create User"}
         </button>

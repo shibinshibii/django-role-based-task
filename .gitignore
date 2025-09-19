@@ -50,6 +50,5 @@ htmlcov/
 .pytest_cache/
 
 #migrations
-migrations/
-core/migrations/
-project_management/core/migrations/
+**/migrations/
+

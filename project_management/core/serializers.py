@@ -4,6 +4,21 @@ from .models import CustomUser,Role,Project,Task
 from django.core.mail import send_mail
 import random,string
 
+class AdminCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ("id","username","email","password","role")
+    def create(self,validated_data):
+        admin_role = Role.objects.get(name="Admin")
+        user = CustomUser.objects.create_user(
+            username=validated_data['username'],
+            role=admin_role,
+            email=validated_data['email'],
+            password=validated_data['password']
+
+
+        )
+        return user
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser

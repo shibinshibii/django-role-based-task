@@ -2,12 +2,26 @@
 
 **Set-up**
 
-- python -m venv venv - create a virtual environment
+- `python -m venv venv` - create a virtual environment
 - venv\Scripts\activate - activate the environment
 - pip install -r requirements.txt - install the requirements after activating the environment variable
 - python manage.py makemigrations - make migrations
 - python manage.py migrate
-- python manage.py runserver - run the server
+- python manage.py runserver
+
+**Creating Roles**
+
+- run `python manage.py createroles` to create roles. 
+- if you want to add or change the roles go to core/management/commands/createroles.py
+
+**Creating the Admin**
+
+- You need an admin to create coordinators and employees(Note that you need to create the roles before creating admin).
+- Go to /create-admin/ endpoint using Postman.
+- ```json {"username":"admin_username","email":"admin_email","password":"admin_password"}```
+- Add this inside the body section(change the values).
+- RUN , Admin will be created.
+-
 
 **Setting up the email-provider**
 
