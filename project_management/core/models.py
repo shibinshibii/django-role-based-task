@@ -20,6 +20,9 @@ class Project(models.Model):
     name = models.CharField(max_length=50)
     description = models.TextField()
     created_by = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.name
 
 class Task(models.Model):
     title = models.CharField(max_length=50)
@@ -32,4 +35,9 @@ class Task(models.Model):
         ('DONE','DONE')
     ]
     status = models.CharField(choices=status_choices,max_length=50,default="PENDING")
+    def __str__(self):
+        return self.title
+
+
+
 
